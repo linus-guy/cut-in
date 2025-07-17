@@ -9,4 +9,13 @@ def main():
         print("Error: Could not read the image.")
         return
     cv2.imshow("Image", img)
-
+    choice=input("do you want to add another image to do other operations? (y/n)")
+    if choice.lower() == 'y':
+        imgpath=input("Enter the path to the image: ")
+        img = cv2.imread(imgpath)
+        if img is None:
+            print("Error: Could not read the image.")
+            return
+        cv2.imshow("Image", img)
+    else:
+        pass
