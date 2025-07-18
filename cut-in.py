@@ -16,14 +16,16 @@ def main():
     choice=input("do you want to add another image to do other operations? (y/n)")
     if choice.lower() == 'y':
         imgpath2=input("Enter the path to the image: ")
-        img = cv2.imread(imgpath2)
-        if img is None:
+        img2 = cv2.imread(imgpath2)
+        if img2 is None:
             print("Error: Could not read the image.")
             return
-        cv2.imshow("Image", img)
+        cv2.imshow("Image", img2)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
         choice=input("do you want to diff them? (y/n)")
+        if choice.lower() == 'y':
+            diff(img, img2)
 
     else:
         pass
