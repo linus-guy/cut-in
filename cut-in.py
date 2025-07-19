@@ -1,8 +1,18 @@
 import cv2
+import argparse
 
 def diff(img1, img2):
     # Compute the absolute difference between the two images
     return cv2.absdiff(img1, img2)
+
+def imshowplus(img, title):
+    try:
+        cv2.imshow(title, img)
+        cv2.waitKey(0)
+    except IOError as e:
+        print(f"Error displaying image: {e}")
+    finally:
+        cv2.destroyAllWindows()
 
 def main():
     imgpath=input("Enter the path to the image: ")
@@ -10,9 +20,7 @@ def main():
     if img is None:
         print("Error: Could not read the image.")
         return
-    cv2.imshow("Image", img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    imshowplus(img, "Image")
     choice=input("do you want to add another image to do other operations? (y/n)")
     if choice.lower() == 'y':
         imgpath2=input("Enter the path to the image: ")
@@ -20,9 +28,7 @@ def main():
         if img2 is None:
             print("Error: Could not read the image.")
             return
-        cv2.imshow("Image", img2)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
+        imshowplus(img2, "Image")
         choice=input("do you want to diff them? (y/n)")
         if choice.lower() == 'y':
             diff(img, img2)
